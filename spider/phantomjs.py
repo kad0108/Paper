@@ -1,7 +1,5 @@
-#!/usr/bin/env python
-# -*- encoding: utf-8 -*-
-# Created on 2015-10-08 12:45:44
-# Project: test
+#coding=utf-8
+
 '''
 @PhantomJS 是一个基于 WebKit 的服务器端 JavaScript API.
 @这里借助pyspider框架，使用PhanomJs渲染异步加载的页面
