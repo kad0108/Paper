@@ -8,6 +8,7 @@ from pymongo import *
 client = MongoClient()#建立连接
 db = client['result']#拿到数据库result
 col = db['kr']#拿到集合kr
+
 class Handler(BaseHandler):
     def on_start(self):
         self.crawl('http://36kr.com/p/5056145.html',headers={'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36'},fetch_type='js', callback=self.phantomjs_parser)
