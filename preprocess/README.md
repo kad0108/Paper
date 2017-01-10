@@ -1,0 +1,7 @@
+**Mongoose**是MongoDB的一个对象模型工具，是基于node-mongodb-native开发的MongoDB nodejs驱动，可以在异步的环境下执行。同时它也是针对MongoDB操作的一个对象模型库，封装了MongoDB对文档的的一些增删改查等常用方法，让NodeJS操作Mongodb数据库变得更加灵活简单。
+
+Schema ： 是mongoose里会用到的一种数据模式，可以理解为表结构的定义；每个schema会映射到mongodb中的一个collection，它不具备操作数据库的能力 
+Model ： 是由schema生成的模型，可以对数据库的操作 
+Entity ： 由Model创建的实体，他的操作也会影响数据库
+
+它们之间的关系是Schema生成Model，Model创造Entity，Model和Entity都可对数据库操作造成影响，但Model比Entity更具操作性。Model对应collection,Entity对应docment。
