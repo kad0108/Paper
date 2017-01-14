@@ -9,9 +9,16 @@ K = 10
 iter_num = 50
 top_words = 20
 
-wordmapfile  = './model/wordmap.txt'
-trnfile = "./result.txt"
-modelfile_suffix = "./model/final"
+# TAG_NO = "13"
+
+# wordmapfile  = './model/' + TAG_NO + '/wordmap.txt'
+# trnfile = "./data/" + TAG_NO + ".txt"
+# modelfile_suffix = "./model/" + TAG_NO + "/final"
+
+wordmapfile  =""
+trnfile = ""
+modelfile_suffix = ""
+
 
 class Document(object):
     def __init__(self):
@@ -202,5 +209,29 @@ def lda():
     model.init_est()
     model.estimate()
 
+import fenci
+import jieba
 if __name__=='__main__':
+
+
+    # for tag  in 
+    # global wordmapfile
+    # global trnfile
+    # global modelfile_suffix
+
+    tag = '旅游'
+    TAG_NO = fenci.tagMap[tag]
+    wordmapfile  = './model/' + TAG_NO + '/wordmap.txt'
+    trnfile = "./data/" + TAG_NO + ".txt"
+    modelfile_suffix = "./model/" + TAG_NO + "/final"
+
+    
+    doc = fenci.get_doc(tag)
+    segs = jieba.cut(doc.encode("gb2312", "ignore"))
+    segs_list = list(segs)
+    fenci.stop_word(segs_list, tag)
+
+    print "OK"
+
+
     lda()
