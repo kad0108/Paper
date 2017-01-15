@@ -36,8 +36,4 @@ function find(conditions, callback){
 	})
 }
 
-module.exports = {
-	find: find,
-	del: del,
-	update: update
-}
+module.exports = Lagou;
