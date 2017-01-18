@@ -1,0 +1,6 @@
+alpha = 0.1
+beta = 0.1
+ntopics = 10
+ndocs = 2954
+nwords = 12475
+liter = 50

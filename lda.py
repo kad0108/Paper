@@ -214,24 +214,22 @@ import jieba
 if __name__=='__main__':
 
 
-    # for tag  in 
-    # global wordmapfile
-    # global trnfile
-    # global modelfile_suffix
+    for tag in fenci.tagMap.keys():
+    # tags = [u'生活服务', u'广告营销', u'旅游', u'数据服务', u'社交网络', 
+    #         u'分类信息', u'信息安全', u'招聘', u'其他'];
+    # for tag in tags:
+        TAG_NO = fenci.tagMap[tag]
+        wordmapfile  = './model2/' + TAG_NO + '/wordmap.txt'
+        trnfile = "./data/" + TAG_NO + ".txt"
+        modelfile_suffix = "./model2/" + TAG_NO + "/final"
 
-    tag = '旅游'
-    TAG_NO = fenci.tagMap[tag]
-    wordmapfile  = './model/' + TAG_NO + '/wordmap.txt'
-    trnfile = "./data/" + TAG_NO + ".txt"
-    modelfile_suffix = "./model/" + TAG_NO + "/final"
-
-    
-    doc = fenci.get_doc(tag)
-    segs = jieba.cut(doc.encode("gb2312", "ignore"))
-    segs_list = list(segs)
-    fenci.stop_word(segs_list, tag)
-
-    print "OK"
-
-
-    lda()
+        
+        doc = fenci.get_doc(tag)
+        print 'Get doc of ' + tag + '...'
+        segs = jieba.cut(doc.encode("gb2312", "ignore"))
+        print 'Word segmentation of ' + tag + ' finished...'
+        segs_list = list(segs)
+        fenci.stop_word(segs_list, tag)
+        print 'Delete stopword of ' + tag +  ' finished...'
+        lda()
+        print 'LDA of ' + tag + ' finished...'

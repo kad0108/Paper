@@ -6,27 +6,28 @@ sys.setdefaultencoding('utf-8')
 # sys.path.append("../")
 import jieba
 from pymongo import *
+import re,os
 
 tagMap = {
-	'移动互联网': '1',
-	'电子商务': '2', 
-	'金融': '3', 
-	'企业服务': '4', 
-	'教育': '5', 
-	'文化娱乐': '6', 
-	'游戏': '7', 
-	'O2O': '8', 
-	'硬件': '9',
-	'医疗健康': '10', 
-	'生活服务': '11', 
-	'广告营销': '12', 
-	'旅游': '13', 
-	'数据服务': '14', 
-	'社交网络': '15', 
-	'分类信息': '16', 
-	'信息安全': '17', 
-	'招聘': '18', 
-	'其他': '19'
+	u'移动互联网': '1',
+	u'电子商务': '2', 
+	u'金融': '3', 
+	u'企业服务': '4', 
+	u'教育': '5', 
+	u'文化娱乐': '6', 
+	u'游戏': '7', 
+	u'O2O': '8', 
+	u'硬件': '9',
+	u'医疗健康': '10', 
+	u'生活服务': '11', 
+	u'广告营销': '12', 
+	u'旅游': '13', 
+	u'数据服务': '14', 
+	u'社交网络': '15', 
+	u'分类信息': '16', 
+	u'信息安全': '17', 
+	u'招聘': '18', 
+	u'其他': '19'
 }
 
 def get_db():
@@ -44,6 +45,9 @@ def get_content(cid):
 	return col.find_one({'cid': cid})['content']
 
 def get_doc(tag, number = -1):
+    if os.path.isfile('./data/doc' + tagMap[tag] + '.txt'):
+        doc = open('./data/doc' + tagMap[tag] + '.txt').read()
+        return doc
     db = get_db()
     col = get_col(db, 'desdata')
     doc = ""
@@ -55,6 +59,8 @@ def get_doc(tag, number = -1):
         for i in xrange(0, number):
             doc += get_content(item['content'][i])
 
+    pattern = re.compile(r'www\..*?\.com');
+    doc = pattern.sub("", doc)
     docfile = open('./data/doc' + tagMap[tag] + '.txt', 'w')
     docfile.write(doc)
     docfile.close()
