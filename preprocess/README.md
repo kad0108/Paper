@@ -37,7 +37,7 @@ Model.find({...}, function(err, res){
 2. promise
 
 
-   ```
+```
 //model.js
 function find(conditions){
   return xxModel.find(conditions).exec();
@@ -52,13 +52,14 @@ Model.find({...}).then(function(res){
 }).catch(functon(err){
   //find error
 })
-   ```
+```
 
 ## Async
 
 ```
 npm install --save async
 ```
+
 #### 流程控制
 
 * series：任务串行执行，所有任务执行结果返回给callback
